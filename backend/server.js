@@ -19,15 +19,22 @@ const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 })
+// const uri = process.env.ATLAS_URI;
+// mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
+// );
+// const connection = mongoose.connection;
+// connection.once('open', () => {
+//   console.log("MongoDB database connection established successfully");
+// })
+
 
 //adding routes
 
-//create router objects
-const exerciseRouter = require('./routes/exercises');
-const userRouter = require('./routes/users');
-//use the routers
-app.use('exercises',exerciseRouter);
-app.use('user',userRouter);
+const exercisesRouter = require('./routes/exercises');
+const usersRouter = require('./routes/users');
+
+app.use('/exercises', exercisesRouter);
+app.use('/users', usersRouter);
 
   
 app.listen(port, () => {
